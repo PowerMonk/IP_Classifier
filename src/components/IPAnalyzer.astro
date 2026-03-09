@@ -1,0 +1,123 @@
+---
+// IPAnalyzer.astro - IP Address Classification Tool
+// all logic in separate TypeScript files
+---
+
+<div class="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-12 px-4">
+  <div class="max-w-4xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <h1 class="text-4xl font-bold text-gray-800 mb-3">
+        IP Address Classifier
+      </h1>
+      <p class="text-gray-600 text-lg">
+        Analyze IP addresses and discover their network classification
+      </p>
+    </div>
+
+    <!-- Main Card -->
+    <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+      <!-- Step 1: Set IP Count -->
+      <div class="mb-8">
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">
+          Step 1: How many IP addresses do you want to analyze?
+        </h2>
+        <div class="flex gap-3 items-center">
+          <input
+            type="number"
+            id="ip-count"
+            min="1"
+            max="100"
+            value="1"
+            class="w-32 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+          />
+          <button
+            id="set-count-btn"
+            class="px-6 py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            Set Count
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Input IP Addresses -->
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">
+          Step 2: Enter IP addresses
+        </h2>
+        <div id="ip-inputs-container" class="space-y-3">
+          <!-- IP inputs will be rendered here by client script -->
+        </div>
+      </div>
+
+      <!-- Add IP Button -->
+      <div class="mb-6">
+        <button
+          id="add-ip-btn"
+          class="flex items-center gap-2 px-4 py-2 bg-green-500 text-white font-medium rounded-lg hover:bg-green-600 transition-colors"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 4v16m8-8H4"></path>
+          </svg>
+          Add Another IP
+        </button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-3 pt-4 border-t border-gray-200">
+        <button
+          id="analyze-btn"
+          class="flex-1 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-md hover:shadow-lg"
+        >
+          Analyze IPs
+        </button>
+        <button
+          id="clear-btn"
+          class="px-6 py-3 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-600 transition-colors"
+        >
+          Clear All
+        </button>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-container" class="hidden">
+      <!-- Results will be rendered here by client script -->
+    </div>
+
+    <!-- Info Section -->
+    <div class="bg-white rounded-2xl shadow-md p-6 mt-8">
+      <h3 class="text-lg font-semibold text-gray-700 mb-3">
+        About IP Classification
+      </h3>
+      <div class="text-sm text-gray-600 space-y-2">
+        <p>
+          <strong>Class A:</strong> 0.0.0.0 to 127.255.255.255 (Subnet Mask: 255.0.0.0
+          or /8)
+        </p>
+        <p>
+          <strong>Class B:</strong> 128.0.0.0 to 191.255.255.255 (Subnet Mask: 255.255.0.0
+          or /16)
+        </p>
+        <p>
+          <strong>Class C:</strong> 192.0.0.0 to 255.255.255.255 (Subnet Mask: 255.255.255.0
+          or /24)
+        </p>
+        <p class="mt-3 pt-3 border-t border-gray-200">
+          IPs on the same network will be grouped together with matching colors.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../scripts/ipAnalyzerClient.ts"></script>
